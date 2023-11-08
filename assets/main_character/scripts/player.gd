@@ -15,6 +15,7 @@ var _is_attacking: bool = false
 
 
 func _ready() -> void:
+	_animation_tree.active = true
 	_state_machine = _animation_tree["parameters/playback"]
 #
 
@@ -66,3 +67,8 @@ func _animate():
 func _on_attack_timer_timeout() -> void:
 	set_physics_process(true)
 	_is_attacking = false
+
+
+#func _on_attack_area_body_entered(body: Node2D) -> void:
+	#if _body.is_in_group('enemy'):
+	#	_body.update_health(randi_range(1, 5))
