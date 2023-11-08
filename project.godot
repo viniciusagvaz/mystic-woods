@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mystic Woods"
-run/main_scene="res://assets/main_character/player.tscn"
+run/main_scene="res://assets/characters/main_character/player.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
