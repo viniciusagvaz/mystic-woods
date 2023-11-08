@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://cypxlujlsyjab"]
+
+[ext_resource type="Script" path="res://components/scripts/door_component.gd" id="1_njvtp"]
+[ext_resource type="Texture2D" uid="uid://bjwww6lpgaimq" path="res://terrains/assets/interiors/wooden_door_b.png" id="1_pq25m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jfqk"]
+size = Vector2(26, 7.125)
+
+[sub_resource type="Animation" id="Animation_o60na"]
+resource_name = "open_door"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_alf0w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lmwsa"]
+resource_name = "close_door"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_47cvv"]
+_data = {
+"RESET": SubResource("Animation_alf0w"),
+"close_door": SubResource("Animation_lmwsa"),
+"open_door": SubResource("Animation_o60na")
+}
+
+[node name="DoorComponent" type="Area2D" node_paths=PackedStringArray("_animation")]
+z_index = 2
+script = ExtResource("1_njvtp")
+_teleport_position = Vector2(1176, 844)
+_animation = NodePath("Animation")
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture = ExtResource("1_pq25m")
+hframes = 2
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_0jfqk")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_47cvv")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_finished"]
