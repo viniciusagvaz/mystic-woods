@@ -1,10 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://cy7ow33xoqh0o"]
+[gd_scene load_steps=41 format=3 uid="uid://cy7ow33xoqh0o"]
 
 [ext_resource type="Script" path="res://characters/main_character/scripts/player.gd" id="1_tba5m"]
 [ext_resource type="Texture2D" uid="uid://dtmpnfd8d5u7b" path="res://characters/main_character/player.png" id="2_nqfq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rov5v"]
-size = Vector2(12, 4)
+size = Vector2(8, 4)
 
 [sub_resource type="Animation" id="Animation_p6nrn"]
 length = 0.001
@@ -759,6 +759,29 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_5q03m")
 blend_point_3/pos = Vector2(1, 0)
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t8gpv"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pqeg3"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wywi7"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fhv3g"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_82uts"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_t8gpv")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_pqeg3")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_wywi7")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_fhv3g")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xyjjb"]
 animation = &"idle_down"
 
@@ -809,14 +832,17 @@ blend_mode = 1
 states/Start/position = Vector2(168, 100)
 states/attack/node = SubResource("AnimationNodeBlendSpace2D_jfkvq")
 states/attack/position = Vector2(311, 268)
+states/death/node = SubResource("AnimationNodeBlendSpace2D_82uts")
+states/death/position = Vector2(311, 341)
 states/idle/node = SubResource("AnimationNodeBlendSpace2D_a8qen")
 states/idle/position = Vector2(311, 100)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_xfcdu")
 states/walk/position = Vector2(311, 179)
+graph_offset = Vector2(-44, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfgyx"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_attack_timer", "_animation_tree")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_attack_timer", "_animation_tree") groups=["character"]]
 motion_mode = 1
 script = ExtResource("1_tba5m")
 _attack_timer = NodePath("AttackTimer")
@@ -841,6 +867,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_7526f")
 anim_player = NodePath("../Animation")
 parameters/attack/blend_position = Vector2(0, 0)
+parameters/death/blend_position = Vector2(-0.00484651, 0.989637)
 parameters/idle/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(0, 0)
 

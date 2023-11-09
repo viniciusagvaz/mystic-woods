@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6xwrvqubio2o"]
+[gd_scene load_steps=12 format=3 uid="uid://b6xwrvqubio2o"]
 
 [ext_resource type="Texture2D" uid="uid://bqhj6hjwx560w" path="res://terrains/assets/base_terrain/grass.png" id="1_x8c35"]
 [ext_resource type="Texture2D" uid="uid://b24hlacmwtfdg" path="res://terrains/assets/base_terrain/plains.png" id="2_kk3ks"]
 [ext_resource type="Texture2D" uid="uid://d0ldsffrfviu7" path="res://terrains/fences.png" id="3_v4sa3"]
+[ext_resource type="Texture2D" uid="uid://dwfb5b2rjn0tu" path="res://terrains/assets/base_terrain/water1.png" id="3_xi2yn"]
 [ext_resource type="Texture2D" uid="uid://cp0bmt6mm37m0" path="res://terrains/assets/base_terrain/decor_16x16.png" id="4_2ahc5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfom0"]
@@ -426,6 +427,26 @@ texture = ExtResource("2_kk3ks")
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/terrains_peering_bit/bottom_side = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vismn"]
+resource_name = "water"
+texture = ExtResource("3_xi2yn")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0h1a0"]
 resource_name = "fences"
 texture = ExtResource("3_v4sa3")
@@ -622,6 +643,7 @@ sources/0 = SubResource("TileSetAtlasSource_qfom0")
 sources/1 = SubResource("TileSetAtlasSource_w20y2")
 sources/4 = SubResource("TileSetAtlasSource_0h1a0")
 sources/5 = SubResource("TileSetAtlasSource_ahkwr")
+sources/2 = SubResource("TileSetAtlasSource_vismn")
 
 [node name="Terrain" type="TileMap"]
 tile_set = SubResource("TileSet_17dxn")
@@ -641,3 +663,10 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
+layer_3/name = "water"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array()
